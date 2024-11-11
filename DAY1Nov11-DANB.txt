@@ -1,6 +1,6 @@
 !@@@CORE SWITCH SA TAAS
 config t
-   hostname COREtaas41
+   hostname COREtaas31
    enable secret pass
    service password-encryption
    no logging console
@@ -15,25 +15,25 @@ config t
       exec-timeout 0 0
    Int Vlan 1
      no shutdown
-	 ip add 10.41.1.2 255.255.255.0
+	 ip add 10.31.1.2 255.255.255.0
 	 description MGMTDATA
    Int Vlan 10
      no shutdown
-	 ip add 10.41.10.2 255.255.255.0
+	 ip add 10.31.10.2 255.255.255.0
 	 description WIRELESS
    Int Vlan 50
      no shutdown
-	 ip add 10.41.50.2 255.255.255.0
+	 ip add 10.31.50.2 255.255.255.0
 	 description IPCCTV
    Int Vlan 100
      no shutdown
-	 ip add 10.41.100.2 255.255.255.0
+	 ip add 10.31.100.2 255.255.255.0
 	 description VOICEVLAN
 
 !!!DAPAT 7 UNDER SCORE ANG NA EDIT MO  ( LINE 34 to 68 PASTE TO COREBABA SWITCH )
 !@@@LeafSwitchONLY
 config t
-   hostname COREbaba41
+   hostname COREbaba31
    enable secret pass
    service password-encryption
    no logging console
@@ -49,53 +49,53 @@ config t
    Int Gi 0/1
      no shutdown
 	  no switchport
-	  ip add 10.41.41.4 255.255.255.0
+	  ip add 10.31.31.4 255.255.255.0
    Int Vlan 1
      no shutdown
-	 ip add 10.41.1.4 255.255.255.0
+	 ip add 10.31.1.4 255.255.255.0
 	 description MGMTDATA
    Int Vlan 10
      no shutdown
-	 ip add 10.41.10.4 255.255.255.0
+	 ip add 10.31.10.4 255.255.255.0
 	 description WIRELESS
    Int Vlan 50
      no shutdown
-	 ip add 10.41.50.4 255.255.255.0
+	 ip add 10.31.50.4 255.255.255.0
 	 description IPCCTV
    Int Vlan 100
      no shutdown
-	 ip add 10.41.100.4 255.255.255.0
+	 ip add 10.31.100.4 255.255.255.0
 	 description VOICEVLAN
 	 
 !DHCP: DYNAMIC HOST CONFIGURATION PROTOCOL
 !!!DAPAT 21 UNDER SCORE ANG NA EDIT MO  ( LINE 72 to 99 PASTE TO COREBABA SWITCH )
 !@@@LEAF SWITCH
 config t
-ip dhcp Excluded-add 10.41.1.1 10.41.1.100
-ip dhcp Excluded-add 10.41.10.1 10.41.10.100
-ip dhcp Excluded-add 10.41.100.1 10.41.100.100
-ip dhcp Excluded-add 10.41.50.1 10.41.50.100
+ip dhcp Excluded-add 10.31.1.1 10.31.1.100
+ip dhcp Excluded-add 10.31.10.1 10.31.10.100
+ip dhcp Excluded-add 10.31.100.1 10.31.100.100
+ip dhcp Excluded-add 10.31.50.1 10.31.50.100
 ip dhcp pool MGMTDATA
-   network 10.41.1.0 255.255.255.0
-   default-router 10.41.1.4
+   network 10.31.1.0 255.255.255.0
+   default-router 10.31.1.4
    domain-name MGMTDATA.COM
-   dns-server 10.41.1.10
+   dns-server 10.31.1.10
 ip dhcp pool WIFIDATA
-   network 10.41.10.0 255.255.255.0
-   default-router 10.41.10.4
+   network 10.31.10.0 255.255.255.0
+   default-router 10.31.10.4
    domain-name WIFIDATA.COM
-   dns-server 10.41.1.10
+   dns-server 10.31.1.10
 ip dhcp pool IPCCTV
-   network 10.41.50.0 255.255.255.0
-   default-router 10.41.50.4
+   network 10.31.50.0 255.255.255.0
+   default-router 10.31.50.4
    domain-name IPCCTV.COM
-   dns-server 10.41.1.10
+   dns-server 10.31.1.10
 ip dhcp pool VOICEVLAN
-   network 10.41.100.0 255.255.255.0
-   default-router 10.41.100.4
+   network 10.31.100.0 255.255.255.0
+   default-router 10.31.100.4
    domain-name VOICEVLAN.COM
-   dns-server 10.41.1.10
-   option 150 ip 10.41.100.8   
+   dns-server 10.31.1.10
+   option 150 ip 10.31.100.8   
    END
 
 !!CREATING AND PLACING PORTS INSIDEAVLAN:
@@ -144,16 +144,16 @@ Int Fa 0/7
 config t
 ip routing
 ip dhcp pool CAMERA6
-host 10.41.50.6 255.255.255.0
+host 10.31.50.6 255.255.255.0
 client-identifier 001a.0709.4929
 ip dhcp pool CAMERA8
-host 10.41.50.8 255.255.255.0
+host 10.31.50.8 255.255.255.0
 client-identifier 001a.0706.c2fe
 
 !!cisco unified call manager Express command
 !@@@CUCM-M
 config t
-   hostname CUCM-41
+   hostname CUCM-31
    enable secret pass
    service password-encryption
    no logging console
@@ -168,22 +168,22 @@ config t
       exec-timeout 0 0
    Int Fa 0/0
      no shutdown
-	 ip add 10.41.100.8 255.255.255.0 
+	 ip add 10.31.100.8 255.255.255.0 
 	 end
    
 !!!CUCM ANALOG PHONES CONFIG
 configure terminal
 dial-peer voice 1 pots
-   destination-pattern 4100
+   destination-pattern 3100
    port 0/0/0
 dial-peer voice 2 pots
-   destination-pattern 4101
+   destination-pattern 3101
    port 0/0/1
 dial-peer voice 3 pots
-   destination-pattern 4102
+   destination-pattern 3102
    port 0/0/2
 dial-peer voice 4 pots
-   destination-pattern 4103
+   destination-pattern 3103
    port 0/0/3
 end
 
@@ -195,28 +195,28 @@ telephony-service
    no auto-reg-ephone
    max-ephones 5
    max-dn 20
-   ip source-address 10.41.100.8 port 2000
+   ip source-address 10.31.100.8 port 2000
    create cnf-files
 ephone-dn 1
-  number 4111
+  number 3111
 ephone-dn 2
-  number 4122
+  number 3122
 ephone-dn 3
-  number 4133
+  number 3133
 ephone-dn 4
-  number 4144
+  number 3144
 ephone-dn 5
-  number 4155
+  number 3155
 ephone-dn 6
-  number 4166
+  number 3166
 ephone-dn 7
-  number 4177
+  number 3177
 ephone-dn 8
-  number 4188
+  number 3188
  ephone-dn 9
-   number 4190
+   number 3190
 ephone-dn 10
- number 4191
+ number 3191
 Ephone 1
   Mac-address b4e9.b0b1.715b 
   type 8945
@@ -268,18 +268,18 @@ dial-peer voice 22 Voip
  destination-pattern 22..
  session target ipv4:10.22.100.8
  codec g711ULAW
-dial-peer voice 31 Voip
- destination-pattern 31..
- session target ipv4:10.31.100.8
- codec g711ULAW
+!dial-peer voice 31 Voip
+!destination-pattern 31..
+!session target ipv4:10.31.100.8
+!codec g711ULAW
 dial-peer voice 32 Voip
  destination-pattern 32..
  session target ipv4:10.32.100.8
  codec g711ULAW
- ! dial-peer voice 41 Voip
- ! destination-pattern 41..
- ! session target ipv4:10.41.100.8
- ! codec g711ULAW
+ dial-peer voice 41 Voip
+ destination-pattern 41..
+ session target ipv4:10.41.100.8
+ codec g711ULAW
 dial-peer voice 42 Voip
  destination-pattern 42..
  session target ipv4:10.42.100.8
@@ -320,7 +320,7 @@ dial-peer voice 82 Voip
 @@@@@@
 !@@@EDGE ROUTE CONFIG
 config t
-   hostname EDGE-41
+   hostname EDGE-31
    enable secret pass
    service password-encryption
    no logging console
@@ -335,15 +335,15 @@ config t
       exec-timeout 0 0
    Int Gi 0/0/0
      description INSIDE
-     ip add 10.41.41.1 255.255.255.0
+     ip add 10.31.31.1 255.255.255.0
 	 no shutdown
    Int Gi 0/0/1
      description OUTSIDE
-	 ip add 200.0.0.41 255.255.255.0
+	 ip add 200.0.0.31 255.255.255.0
 	 no shutdown
    Int Loopback 0
      description VIRTUALIP
-	 ip add 41.0.0.1 255.255.255.255
+	 ip add 31.0.0.1 255.255.255.255
  end
 
 OPEN SHORTEST PATH FIRST/OSPF CONFIG
@@ -353,26 +353,26 @@ sirc: sh ip route connected
 @EDGE:
 config t
 router ospf 1 
-router-id 41.0.0.1
+router-id 31.0.0.1
 network 200.0.0.0 0.0.0.255 area 0
-network 10.41.41.0 0.0.0.255 area 0
-network 41.0.0.1 0.0.0.0 area 0
+network 10.31.31.0 0.0.0.255 area 0
+network 31.0.0.1 0.0.0.0 area 0
 Interface gi 0/0/0
  ip ospf network point-to-point
 end
 @CoreBABA:
 config t
 router ospf 1
-router-id 10.41.41.4
-network 10.41.0.0 0.0.255.255 area 0
+router-id 10.31.31.4
+network 10.31.0.0 0.0.255.255 area 0
 
 int gi 0/1
  ip ospf network point-to-point
  @CUCM:
  config t 
  router ospf 1
- router-id 10.41.100.8
- network 10.41.100.0 0.0.0.255 area 0
+ router-id 10.31.100.8
+ network 10.31.100.0 0.0.0.255 area 0
  end
 
  !!!STATIC ROUTING FOR MININUM WAGERS: 645php/day
@@ -427,9 +427,9 @@ route  add  200.0.0.0   mask  255.255.255.0   10._.1.4
 config t
 dial-peer voice 69 voip
  service rivanaa out-bound
- destination-pattern 4169
- session target ipv4:10.41.100.8
- incoming called-number 4169
+ destination-pattern 3169
+ session target ipv4:10.31.100.8
+ incoming called-number 3169
  dtmf-relay h245-alphanumeric
  codec g711ulaw
  no vad
@@ -455,10 +455,10 @@ application
   param aa-pilot 4169
  service rivanqueue flash:app-b-acd-3.0.0.2.tcl
   param queue-len 15
-  param aa-hunt1 4100
-  param aa-hunt2 4101
-  param aa-hunt3 4177
-  param aa-hunt4 4133
+  param aa-hunt1 3100
+  param aa-hunt2 3177
+  param aa-hunt3 3101
+  param aa-hunt4 3133
   param queue-manager-debugs 1
   param number-of-hunt-grps 4
 *********************************************************************
