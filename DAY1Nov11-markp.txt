@@ -317,6 +317,8 @@ dial-peer voice 82 Voip
  session target ipv4:10.82.100.8
  codec g711ULAW
 
+
+
 @@@@@@
 !@@@EDGE ROUTE CONFIG
 config t
@@ -350,13 +352,18 @@ OPEN SHORTEST PATH FIRST/OSPF CONFIG
 @EDGE:
 siib: sh ip int brief
 sirc: sh ip route connected
+
 @EDGE:
+config t
 router ospf 1
 router-id 31.0.0.1
-network 0.0.0.0 255.255.255.255 area 0
+network 200.0.0.0   0.0.0.255 area 0
+network 10.31.31.0  0 0.0.255 area 0
+network 31.0.0.1    0.0.0.0 area 0
+int gi 0/0/0
+ip ospf network point-to-point
 end
 
- 	
 @CoreBABA:
 config t
 router ospf 1
