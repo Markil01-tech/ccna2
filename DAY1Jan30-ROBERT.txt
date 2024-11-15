@@ -174,16 +174,16 @@ config t
 !!!CUCM ANALOG PHONES CONFIG
 configure terminal
 dial-peer voice 1 pots
-   destination-pattern 1200
+   destination-pattern 3100
    port 0/0/0
 dial-peer voice 2 pots
-   destination-pattern 1201
+   destination-pattern 3101
    port 0/0/1
 dial-peer voice 3 pots
-   destination-pattern 1202
+   destination-pattern 3102
    port 0/0/2
 dial-peer voice 4 pots
-   destination-pattern 1203
+   destination-pattern 3103
    port 0/0/3
 end
 
